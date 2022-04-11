@@ -299,3 +299,9 @@ type TokenDayData @entity {
   # price stats
   priceUSD: BigDecimal!
 }
+
+type Block @entity {
+  id: ID! # txn hash
+  number: BigInt!
+  timestamp: BigInt!
+}
