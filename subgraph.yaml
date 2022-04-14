@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: testnet
+    network: mainnet
     source:
-      address: '0x0ade074fad67bfe21a7d29cd521a001cb3662ae6' # testnet 0x0ade074fad67bfe21a7d29cd521a001cb3662ae6
+      address: '0xe2a6f7c0ce4d5d300f97aa7e125455f5cd3342f5' # testnet: 0x0ade074fad67bfe21a7d29cd521a001cb3662ae6 mainnet: 0xe2a6f7c0ce4d5d300f97aa7e125455f5cd3342f5
       abi: Factory
-      startBlock: 71545605 # testnet 71545605
+      startBlock: 40397165 # testnet: 71545605 mainnet: 40397165
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
@@ -37,7 +37,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pair
-    network: testnet
+    network: mainnet
     source:
       abi: Pair
     mapping:

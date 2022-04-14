@@ -22,7 +22,22 @@ const testnetAddress: string[] = [
   '0x94702463162f73063f2159c2c8e1f176fcdc4ed2', // 11 PPI
 ]
 
-export let networkAddress = testnetAddress
+const mainnetAddress: string[] = [
+  '0xe2a6f7c0ce4d5d300f97aa7e125455f5cd3342f5', // 0 SwappiFactory
+  '0x14b2d3bc65e74dae1030eafd8ac30c533c976a9b', // 1 WCFX
+  '0x1f545487c62e5acfea45dcadd9c627361d1616d8', // 2 FaucetBTC
+  '0xa47f43de2f9623acb395ca4905746496d2014d57', // 3 FaucetETH
+  '0xfe97e85d13abd9c1c33384e796f10b73905637ce', // 4 FaucetUSDT
+  '0x8bbbd6150c933fcd790b4a00bab23826912c192c', // 5 'PPI-LP WCFX-BTC'
+  '0x8ea70966e8f14337657bff7f40cfb9648f79530b', // 6 'PPI-LP WCFX-ETH'
+  '0x8fcf9c586d45ce7fcf6d714cb8b6b21a13111e0b', // 7 'PPI-LP WCFX-USDT
+  '0x5767d71b462464ff77f6fbc81b8377ad49983511', // 8 'PPI-LP BTC-ETH'
+  '0x9b2e43277238d4c6a9534caa84cf80cb076810ea', // 9 'PPI-LP BTC-USDT'
+  '0xa6943647f22cb9de7a80d1f447db48b0209a812a', // 10 'PPI-LP ETH-USDT'
+  '0x22f41abf77905f50df398f21213290597e7414dd', // 11 PPI
+]
+
+export let networkAddress = mainnetAddress
 
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
 export let FACTORY_ADDRESS = networkAddress[0]
