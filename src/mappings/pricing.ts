@@ -1,10 +1,10 @@
 /* eslint-disable prefer-const */
 import { Pair, Token, Bundle } from '../types/schema'
 import { BigDecimal, Address, BigInt } from '@graphprotocol/graph-ts/index'
-import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD, UNTRACKED_PAIRS, getPairAddrFromTokensAddr } from './helpers'
+import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD, UNTRACKED_PAIRS, getPairAddrFromTokensAddr, networkAddress } from './helpers'
 
-const WCFX_ADDRESS = '0x14b2d3bc65e74dae1030eafd8ac30c533c976a9b'
-const USDT_WCFX_PAIR = '0x8fcf9c586d45ce7fcf6d714cb8b6b21a13111e0b'
+let WCFX_ADDRESS = networkAddress[1]
+let USDT_WCFX_PAIR = networkAddress[7]
 
 export function getEthPriceInUSD(): BigDecimal {
   let usdtPair = Pair.load(USDT_WCFX_PAIR) // usdt is token1
@@ -18,11 +18,11 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  '0x14b2d3bc65e74dae1030eafd8ac30c533c976a9b', // WCFX
-  '0xa47f43de2f9623acb395ca4905746496d2014d57', // FaucetETH
-  '0x1f545487c62e5acfea45dcadd9c627361d1616d8', // FaucetBTC
-  '0xfe97e85d13abd9c1c33384e796f10b73905637ce', // FaucetUSDT
-  '0x22f41abf77905f50df398f21213290597e7414dd', // PPI
+  networkAddress[1],
+  networkAddress[2],
+  networkAddress[3],
+  networkAddress[4],
+  networkAddress[11],
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps

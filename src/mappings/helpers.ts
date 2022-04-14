@@ -7,8 +7,49 @@ import { User, Bundle, Token, LiquidityPosition, LiquidityPositionSnapshot, Pair
 import { Factory as FactoryContract } from '../types/templates/Pair/Factory'
 import { TokenDefinition } from './tokenDefinition'
 
+const testnetAddress: string[] = [
+  '0x0ade074fad67bfe21a7d29cd521a001cb3662ae6', // 0 SwappiFactory
+  '0x2ed3dddae5b2f321af0806181fbfa6d049be47d8', // 1 WCFX
+  '0x54593e02c39aeff52b166bd036797d2b1478de8d', // 2 FaucetBTC
+  '0xcd71270f82f319e0498ff98af8269c3f0d547c65', // 3 FaucetETH
+  '0x7d682e65efc5c13bf4e394b8f376c48e6bae0355', // 4 FaucetUSDT
+  '0x5e1147bc4c7d402255f5e3b3da0a52edb7952256', // 5 'PPI-LP WCFX-BTC'
+  '0x7a9296180b594c1c0af972ea8160817265818da0', // 6 'PPI-LP WCFX-ETH'
+  '0x1231da34942eddea83fdb32d47610837e81c5e6a', // 7 'PPI-LP WCFX-USDT
+  '0x4a43261c918f03d05ecaec53e9494b972ea19b6c', // 8 'PPI-LP BTC-ETH'
+  '0x998bae83c4fdbcc2788856c7b732f87cdf83119b', // 9 'PPI-LP BTC-USDT'
+  '0x28b13245f40e3dad255c6485c80215b1f744430e', // 10 'PPI-LP ETH-USDT'
+  '0x94702463162f73063f2159c2c8e1f176fcdc4ed2', // 11 PPI
+]
+
+export let networkAddress = testnetAddress
+
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
-export const FACTORY_ADDRESS = '0xe2a6f7c0ce4d5d300f97aa7e125455f5cd3342f5'
+export let FACTORY_ADDRESS = networkAddress[0]
+
+export function getPairAddrFromTokensAddr(token0Addr: string, token1Addr: string): string {
+  if ((token0Addr == networkAddress[1] && token1Addr == networkAddress[2]) || (token1Addr == networkAddress[1] && token0Addr == networkAddress[2])) {
+    return networkAddress[5]
+  }
+  if ((token0Addr == networkAddress[1] && token1Addr == networkAddress[3]) || (token1Addr == networkAddress[1] && token0Addr == networkAddress[3])) {
+    return networkAddress[6]
+  }
+  if ((token0Addr == networkAddress[1] && token1Addr == networkAddress[4]) || (token1Addr == networkAddress[1] && token0Addr == networkAddress[4])) {
+    return networkAddress[7]
+  }
+  if ((token0Addr == networkAddress[2] && token1Addr == networkAddress[3]) || (token1Addr == networkAddress[2] && token0Addr == networkAddress[3])) {
+    return networkAddress[8]
+  }
+  if ((token0Addr == networkAddress[2] && token1Addr == networkAddress[4]) || (token1Addr == networkAddress[2] && token0Addr == networkAddress[4])) {
+    return networkAddress[9]
+  }
+  if ((token0Addr == networkAddress[3] && token1Addr == networkAddress[4]) || (token1Addr == networkAddress[3] && token0Addr == networkAddress[4])) {
+    return networkAddress[10]
+  }
+
+  return ADDRESS_ZERO
+}
+
 
 export let ZERO_BI = BigInt.fromI32(0)
 export let ONE_BI = BigInt.fromI32(1)
@@ -189,30 +230,4 @@ export function createLiquiditySnapshot(position: LiquidityPosition, event: Ethe
   snapshot.liquidityPosition = position.id
   snapshot.save()
   position.save()
-}
-
-export function getPairAddrFromTokensAddr(token0Addr: string, token1Addr: string): string {
-  if ((token0Addr == '0x1f545487c62e5acfea45dcadd9c627361d1616d8' && token1Addr == '0xa47f43de2f9623acb395ca4905746496d2014d57') || (token1Addr == '0x1f545487c62e5acfea45dcadd9c627361d1616d8' && token0Addr == '0xa47f43de2f9623acb395ca4905746496d2014d57')) {
-    return '0x5767d71b462464ff77f6fbc81b8377ad49983511'
-  }
-  if ((token0Addr == '0x14b2d3bc65e74dae1030eafd8ac30c533c976a9b' && token1Addr == '0xa47f43de2f9623acb395ca4905746496d2014d57') || (token1Addr == '0x14b2d3bc65e74dae1030eafd8ac30c533c976a9b' && token0Addr == '0xa47f43de2f9623acb395ca4905746496d2014d57')) {
-    return '0x8ea70966e8f14337657bff7f40cfb9648f79530b'
-  }
-  if ((token0Addr == '0x14b2d3bc65e74dae1030eafd8ac30c533c976a9b' && token1Addr == '0x1f545487c62e5acfea45dcadd9c627361d1616d8') || (token1Addr == '0x14b2d3bc65e74dae1030eafd8ac30c533c976a9b' && token0Addr == '0x1f545487c62e5acfea45dcadd9c627361d1616d8')) {
-    return '0x8bbbd6150c933fcd790b4a00bab23826912c192c'
-  }
-  if ((token0Addr == '0xa47f43de2f9623acb395ca4905746496d2014d57' && token1Addr == '0xfe97e85d13abd9c1c33384e796f10b73905637ce') || (token1Addr == '0xa47f43de2f9623acb395ca4905746496d2014d57' && token0Addr == '0xfe97e85d13abd9c1c33384e796f10b73905637ce')) {
-    return '0xa6943647f22cb9de7a80d1f447db48b0209a812a'
-  }
-  if ((token0Addr == '0x1f545487c62e5acfea45dcadd9c627361d1616d8' && token1Addr == '0xfe97e85d13abd9c1c33384e796f10b73905637ce') || (token1Addr == '0x1f545487c62e5acfea45dcadd9c627361d1616d8' && token0Addr == '0xfe97e85d13abd9c1c33384e796f10b73905637ce')) {
-    return '0x9b2e43277238d4c6a9534caa84cf80cb076810ea'
-  }
-  if ((token0Addr == '0x14b2d3bc65e74dae1030eafd8ac30c533c976a9b' && token1Addr == '0xfe97e85d13abd9c1c33384e796f10b73905637ce') || (token1Addr == '0x14b2d3bc65e74dae1030eafd8ac30c533c976a9b' && token0Addr == '0xfe97e85d13abd9c1c33384e796f10b73905637ce')) {
-    return '0x8fcf9c586d45ce7fcf6d714cb8b6b21a13111e0b'
-  }
-  if ((token0Addr == '0x14b2d3bc65e74dae1030eafd8ac30c533c976a9b' && token1Addr == '0x2312338f19ee46e8beeed847f0105bde615acb45') || (token1Addr == '0x14b2d3bc65e74dae1030eafd8ac30c533c976a9b' && token0Addr == '0x2312338f19ee46e8beeed847f0105bde615acb45')) {
-    return '0x7026e8d1ee68b208803e1a0c62dec42b9119be2e'
-  }
-
-  return ADDRESS_ZERO
 }
