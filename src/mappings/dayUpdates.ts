@@ -7,8 +7,8 @@ import { FACTORY_ADDRESS, ONE_BI, ZERO_BD, ZERO_BI } from './helpers'
 export function updateUniswapDayData(event: EthereumEvent): UniswapDayData {
   let uniswap = UniswapFactory.load(FACTORY_ADDRESS)
   let timestamp = event.block.timestamp.toI32()
-  let dayID = timestamp / 86400
-  let dayStartTimestamp = dayID * 86400
+  let dayID = timestamp / 60
+  let dayStartTimestamp = dayID * 60
   let uniswapDayData = UniswapDayData.load(dayID.toString())
   if (uniswapDayData === null) {
     uniswapDayData = new UniswapDayData(dayID.toString())
@@ -30,8 +30,8 @@ export function updateUniswapDayData(event: EthereumEvent): UniswapDayData {
 
 export function updatePairDayData(event: EthereumEvent): PairDayData {
   let timestamp = event.block.timestamp.toI32()
-  let dayID = timestamp / 86400
-  let dayStartTimestamp = dayID * 86400
+  let dayID = timestamp / 60
+  let dayStartTimestamp = dayID * 60
   let dayPairID = event.address
     .toHexString()
     .concat('-')
@@ -62,8 +62,8 @@ export function updatePairDayData(event: EthereumEvent): PairDayData {
 
 export function updatePairHourData(event: EthereumEvent): PairHourData {
   let timestamp = event.block.timestamp.toI32()
-  let hourIndex = timestamp / 3600 // get unique hour within unix history
-  let hourStartUnix = hourIndex * 3600 // want the rounded effect
+  let hourIndex = timestamp / 30 // get unique hour within unix history
+  let hourStartUnix = hourIndex * 30 // want the rounded effect
   let hourPairID = event.address
     .toHexString()
     .concat('-')
@@ -93,8 +93,8 @@ export function updatePairHourData(event: EthereumEvent): PairHourData {
 export function updateTokenDayData(token: Token, event: EthereumEvent): TokenDayData {
   let bundle = Bundle.load('1')
   let timestamp = event.block.timestamp.toI32()
-  let dayID = timestamp / 86400
-  let dayStartTimestamp = dayID * 86400
+  let dayID = timestamp / 60
+  let dayStartTimestamp = dayID * 60
   let tokenDayID = token.id
     .toString()
     .concat('-')

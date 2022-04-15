@@ -26,8 +26,8 @@ export class TokenDefinition {
 
     let tokenWCFX = new TokenDefinition(
       Address.fromString(networkAddress[1]),
-      'WCFX',
-      'WCFX',
+      'CFX',
+      'CFX',
       BigInt.fromI32(18)
     )
     staticDefinitions.push(tokenWCFX)

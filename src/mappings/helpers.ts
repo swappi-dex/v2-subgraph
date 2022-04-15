@@ -8,18 +8,18 @@ import { Factory as FactoryContract } from '../types/templates/Pair/Factory'
 import { TokenDefinition } from './tokenDefinition'
 
 const testnetAddress: string[] = [
-  '0x0ade074fad67bfe21a7d29cd521a001cb3662ae6', // 0 SwappiFactory
-  '0x2ed3dddae5b2f321af0806181fbfa6d049be47d8', // 1 WCFX
-  '0x54593e02c39aeff52b166bd036797d2b1478de8d', // 2 FaucetBTC
-  '0xcd71270f82f319e0498ff98af8269c3f0d547c65', // 3 FaucetETH
-  '0x7d682e65efc5c13bf4e394b8f376c48e6bae0355', // 4 FaucetUSDT
-  '0x5e1147bc4c7d402255f5e3b3da0a52edb7952256', // 5 'PPI-LP WCFX-BTC'
-  '0x7a9296180b594c1c0af972ea8160817265818da0', // 6 'PPI-LP WCFX-ETH'
-  '0x1231da34942eddea83fdb32d47610837e81c5e6a', // 7 'PPI-LP WCFX-USDT
-  '0x4a43261c918f03d05ecaec53e9494b972ea19b6c', // 8 'PPI-LP BTC-ETH'
-  '0x998bae83c4fdbcc2788856c7b732f87cdf83119b', // 9 'PPI-LP BTC-USDT'
-  '0x28b13245f40e3dad255c6485c80215b1f744430e', // 10 'PPI-LP ETH-USDT'
-  '0x94702463162f73063f2159c2c8e1f176fcdc4ed2', // 11 PPI
+  '0x2d57bec97c35e3e6d70cfb02f8a00b4d38bda766', // 0 swappifactory
+  '0x2ed3dddae5b2f321af0806181fbfa6d049be47d8', // 1 wcfx
+  '0x54593e02c39aeff52b166bd036797d2b1478de8d', // 2 faucetbtc
+  '0xcd71270f82f319e0498ff98af8269c3f0d547c65', // 3 fauceteth
+  '0x7d682e65efc5c13bf4e394b8f376c48e6bae0355', // 4 faucetusdt
+  '0xa86df320eff76f5204e922846f4be60ce3a3f184', // 5 'ppi-lp wcfx-btc'
+  '0xbe2f8f60312b425ec0c29ce0945b5147defeb3df', // 6 'ppi-lp wcfx-eth'
+  '0x7d883e774dfe8cea90f241e72368c1ad6892e1d8', // 7 'ppi-lp wcfx-usdt
+  '0x51d5bbfba37b289869e3c99c7eab044fc6ffc4ea', // 8 'ppi-lp btc-eth'
+  '0x659ab2320c95d89605079e991ef710963bfe8c85', // 9 'ppi-lp btc-usdt'
+  '0xfe95926b4dfca66724dfca7fac90d27039ab92ec', // 10 'ppi-lp eth-usdt'
+  '0x7caa2fec42ab92eaa2b1b8e264f3246509c5eda6', // 11 ppi
 ]
 
 const mainnetAddress: string[] = [
@@ -37,7 +37,7 @@ const mainnetAddress: string[] = [
   '0x22f41abf77905f50df398f21213290597e7414dd', // 11 PPI
 ]
 
-export let networkAddress = mainnetAddress
+export let networkAddress = testnetAddress
 
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
 export let FACTORY_ADDRESS = networkAddress[0]
@@ -122,27 +122,25 @@ export function fetchTokenSymbol(tokenAddress: Address): string {
     return (staticDefinition as TokenDefinition).symbol
   }
 
-  return 'unknown'
+  let contract = ERC20.bind(tokenAddress)
+  let contractSymbolBytes = ERC20SymbolBytes.bind(tokenAddress)
 
-  // let contract = ERC20.bind(tokenAddress)
-  // let contractSymbolBytes = ERC20SymbolBytes.bind(tokenAddress)
+  // try types string and bytes32 for symbol
+  let symbolValue = 'unknown'
+  let symbolResult = contract.try_symbol()
+  if (symbolResult.reverted) {
+    let symbolResultBytes = contractSymbolBytes.try_symbol()
+    if (!symbolResultBytes.reverted) {
+      // for broken pairs that have no symbol function exposed
+      if (!isNullEthValue(symbolResultBytes.value.toHexString())) {
+        symbolValue = symbolResultBytes.value.toString()
+      }
+    }
+  } else {
+    symbolValue = symbolResult.value
+  }
 
-  // // try types string and bytes32 for symbol
-  // let symbolValue = 'unknown'
-  // let symbolResult = contract.try_symbol()
-  // if (symbolResult.reverted) {
-  //   let symbolResultBytes = contractSymbolBytes.try_symbol()
-  //   if (!symbolResultBytes.reverted) {
-  //     // for broken pairs that have no symbol function exposed
-  //     if (!isNullEthValue(symbolResultBytes.value.toHexString())) {
-  //       symbolValue = symbolResultBytes.value.toString()
-  //     }
-  //   }
-  // } else {
-  //   symbolValue = symbolResult.value
-  // }
-
-  // return symbolValue
+  return symbolValue
 }
 
 export function fetchTokenName(tokenAddress: Address): string {
@@ -152,40 +150,47 @@ export function fetchTokenName(tokenAddress: Address): string {
     return (staticDefinition as TokenDefinition).name
   }
 
-  return 'unknown'
+  let contract = ERC20.bind(tokenAddress)
+  let contractNameBytes = ERC20NameBytes.bind(tokenAddress)
 
-  // let contract = ERC20.bind(tokenAddress)
-  // let contractNameBytes = ERC20NameBytes.bind(tokenAddress)
+  // try types string and bytes32 for name
+  let nameValue = 'unknown'
+  let nameResult = contract.try_name()
+  if (nameResult.reverted) {
+    let nameResultBytes = contractNameBytes.try_name()
+    if (!nameResultBytes.reverted) {
+      // for broken exchanges that have no name function exposed
+      if (!isNullEthValue(nameResultBytes.value.toHexString())) {
+        nameValue = nameResultBytes.value.toString()
+      }
+    }
+  } else {
+    nameValue = nameResult.value
+  }
 
-  // // try types string and bytes32 for name
-  // let nameValue = 'unknown'
-  // let nameResult = contract.try_name()
-  // if (nameResult.reverted) {
-  //   let nameResultBytes = contractNameBytes.try_name()
-  //   if (!nameResultBytes.reverted) {
-  //     // for broken exchanges that have no name function exposed
-  //     if (!isNullEthValue(nameResultBytes.value.toHexString())) {
-  //       nameValue = nameResultBytes.value.toString()
-  //     }
-  //   }
-  // } else {
-  //   nameValue = nameResult.value
-  // }
-
-  // return nameValue
+  return nameValue
 }
 
 export function fetchTokenTotalSupply(tokenAddress: Address): BigInt {
-  let token = Token.load(tokenAddress.toHexString())
+  // let token = Token.load(tokenAddress.toHexString())
 
-  log.debug(' ----------------------------------------------------------------------------------- sss', [])
-  if (token === null) {
-    return ZERO_BI
-  } else {
-    log.debug(' ----------------------------------------------------------------------------------- bbb', [])
-    // log.debug(' ----------------------------------------------------------------------------------- ttt = {}', [token.totalSupply.toString()])
-    return token.totalSupply
+  // log.debug(' ----------------------------------------------------------------------------------- sss', [])
+  // if (token === null) {
+  //   return ZERO_BI
+  // } else {
+  //   log.debug(' ----------------------------------------------------------------------------------- bbb', [])
+  //   // log.debug(' ----------------------------------------------------------------------------------- ttt = {}', [token.totalSupply.toString()])
+  //   return token.totalSupply
+  // }
+
+  let contract = ERC20.bind(tokenAddress)
+  let totalSupplyValue = null
+  let totalSupplyResult = contract.try_totalSupply()
+  if (!totalSupplyResult.reverted) {
+    totalSupplyValue = totalSupplyResult as i32
   }
+  return BigInt.fromI32(totalSupplyValue as i32)
+
 }
 
 export function fetchTokenDecimals(tokenAddress: Address): BigInt {
@@ -195,16 +200,14 @@ export function fetchTokenDecimals(tokenAddress: Address): BigInt {
     return (staticDefinition as TokenDefinition).decimals
   }
 
-  return BigInt.fromI32(null as i32)
-
-  // let contract = ERC20.bind(tokenAddress)
-  // // try types uint8 for decimals
-  // let decimalValue = null
-  // let decimalResult = contract.try_decimals()
-  // if (!decimalResult.reverted) {
-  //   decimalValue = decimalResult.value
-  // }
-  // return BigInt.fromI32(decimalValue as i32)
+  let contract = ERC20.bind(tokenAddress)
+  // try types uint8 for decimals
+  let decimalValue = null
+  let decimalResult = contract.try_decimals()
+  if (!decimalResult.reverted) {
+    decimalValue = decimalResult.value
+  }
+  return BigInt.fromI32(decimalValue as i32)
 }
 
 export function createLiquidityPosition(exchange: Address, user: Address): LiquidityPosition {
