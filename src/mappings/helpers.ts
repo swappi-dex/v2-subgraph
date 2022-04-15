@@ -37,7 +37,7 @@ const mainnetAddress: string[] = [
   '0x22f41abf77905f50df398f21213290597e7414dd', // 11 ppi
 ]
 
-export let networkAddress = testnetAddress
+export let networkAddress = mainnetAddress
 
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
 export let FACTORY_ADDRESS = networkAddress[0]
