@@ -9,8 +9,8 @@
     "create-local": "graph create swappi-dex/swappi --node http://127.0.0.1:8020",
     "remove-local": "graph remove swappi-dex/swappi --node http://127.0.0.1:8020",
     "deploy-local": "graph deploy swappi-dex/swappi --debug --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
-    "debug": "yarn codegen && graph deploy swappi-dex/swappi --debug-fork --debug QmXY747sKxRh7DDJX7Abing3MZbztTUDnVug1wkhRva68Q --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
-    "redeploy": "yarn codegen && yarn create-local && yarn deploy-local",
+    "debug": "yarn codegen && graph deploy swappi-dex/swappi --debug-fork --debug $npm_config_uuid --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
+    "ship": "yarn codegen && yarn create-local && yarn deploy-local",
     "watch-local": "graph deploy swappi-dex/swappi --watch --debug --node http://127.0.0.1:8020/ --ipfs http://localhost:5001"
   },
   "devDependencies": {
