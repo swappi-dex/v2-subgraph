@@ -10,7 +10,7 @@ dataSources:
     source:
       address: '0xe2a6f7c0ce4d5d300f97aa7e125455f5cd3342f5' # testnet: 0x0ade074fad67bfe21a7d29cd521a001cb3662ae6 mainnet: 0xe2a6f7c0ce4d5d300f97aa7e125455f5cd3342f5
       abi: Factory
-      startBlock: 41020139 # testnet: 71545605 mainnet: 40397165
+      startBlock: 41312206 # testnet: 71545605 mainnet: 40397165
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
