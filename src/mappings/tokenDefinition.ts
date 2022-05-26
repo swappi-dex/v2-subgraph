@@ -96,6 +96,14 @@ export class TokenDefinition {
     )
     staticDefinitions.push(tokenZO)
 
+    let tokenDAI = new TokenDefinition(
+      Address.fromString(networkAddress[25]),
+      'DAI',
+      'DAI',
+      BigInt.fromI32(18)
+    )
+    staticDefinitions.push(tokenDAI)
+
     return staticDefinitions
   }
 

@@ -48,6 +48,7 @@ const mainnetAddress: string[] = [
   '0xc563a5d73091afa6e9afebc03002ed5feb2a5c37', // 22 'ppi-lp cfx-multi'
   '0x8b47a66c0dc369dcb66a206f3c6794df61aaf641', // 23 'faucetzo'
   '0x52f0b6ffad6dc033118ee36ac1cc745b9538c9d2', // 24 'ppi-lp cfx-zo'
+  '0x74eae367d018a5f29be559752e4b67d01cc6b151', // 25 'faucetdai'
 ]
 
 export let networkAddress = mainnetAddress
