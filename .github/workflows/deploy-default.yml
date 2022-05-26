@@ -17,6 +17,7 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ec2-user@ec2-13-229-104-215.ap-southeast-1.compute.amazonaws.com "
+            cd /base/app/v2-subgraph
             git reset HEAD --hard
             git fetch origin default
             git checkout default
