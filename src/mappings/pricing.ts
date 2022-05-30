@@ -29,7 +29,7 @@ let WHITELIST: string[] = [
   networkAddress[18],
   networkAddress[21],
   networkAddress[23],
-  networkAddress[25],
+  // networkAddress[25],
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
