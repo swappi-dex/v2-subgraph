@@ -96,13 +96,21 @@ export class TokenDefinition {
     )
     staticDefinitions.push(tokenZO)
 
-    // let tokenDAI = new TokenDefinition(
-    //   Address.fromString(networkAddress[25]),
-    //   'DAI',
-    //   'DAI',
-    //   BigInt.fromI32(18)
-    // )
-    // staticDefinitions.push(tokenDAI)
+    let tokenTAD = new TokenDefinition(
+      Address.fromString(networkAddress[26]),
+      'TAD',
+      'TAD',
+      BigInt.fromI32(18)
+    )
+    staticDefinitions.push(tokenTAD)
+
+    let tokenAUSD = new TokenDefinition(
+      Address.fromString(networkAddress[27]),
+      'AUSD',
+      'AUSD',
+      BigInt.fromI32(18)
+    )
+    staticDefinitions.push(tokenAUSD)
 
     return staticDefinitions
   }

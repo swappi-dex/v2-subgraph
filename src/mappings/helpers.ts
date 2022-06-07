@@ -49,6 +49,10 @@ const mainnetAddress: string[] = [
   '0x8b47a66c0dc369dcb66a206f3c6794df61aaf641', // 23 'faucetzo'
   '0x52f0b6ffad6dc033118ee36ac1cc745b9538c9d2', // 24 'ppi-lp cfx-zo'
   '0x74eae367d018a5f29be559752e4b67d01cc6b151', // 25 'faucetdai'
+  '0x6138c1073e3cd4a4cf71bcbc8dbf0aaf0cd8e0ca', // 26 'faucettad'
+  '0xff33b107a0e2c0794ac43c3ffaf637fcea3697cf', // 27 'faucetausd'
+  "0x035c455981a9de6922591d5efe9cb884272836c9", // 28 "ppi-lp tad-ausd"
+  "0x0c98f6bab5afec1b149d7219c6cfb5597cdccf97", // 29 "ppi-lp wcfx-ausd"
 ]
 
 export let networkAddress = mainnetAddress
@@ -103,6 +107,12 @@ export function getPairAddrFromTokensAddr(token0Addr: string, token1Addr: string
   }
   if ((token0Addr == networkAddress[1] && token1Addr == networkAddress[23]) || (token1Addr == networkAddress[1] && token0Addr == networkAddress[23])) {
     return networkAddress[24]
+  }
+  if ((token0Addr == networkAddress[26] && token1Addr == networkAddress[27]) || (token1Addr == networkAddress[26] && token0Addr == networkAddress[27])) {
+    return networkAddress[28]
+  }
+  if ((token0Addr == networkAddress[1] && token1Addr == networkAddress[27]) || (token1Addr == networkAddress[1] && token0Addr == networkAddress[27])) {
+    return networkAddress[29]
   }
 
   return ADDRESS_ZERO
