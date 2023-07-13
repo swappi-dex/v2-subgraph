@@ -13,13 +13,13 @@ const testnetAddress: string[] = [
   '0x54593e02c39aeff52b166bd036797d2b1478de8d', // 2 faucetbtc
   '0xcd71270f82f319e0498ff98af8269c3f0d547c65', // 3 fauceteth
   '0x7d682e65efc5c13bf4e394b8f376c48e6bae0355', // 4 faucetusdt
-  '0xa86df320eff76f5204e922846f4be60ce3a3f184', // 5 'ppi-lp wcfx-btc'
-  '0xbe2f8f60312b425ec0c29ce0945b5147defeb3df', // 6 'ppi-lp wcfx-eth'
-  '0x7d883e774dfe8cea90f241e72368c1ad6892e1d8', // 7 'ppi-lp wcfx-usdt
-  '0x51d5bbfba37b289869e3c99c7eab044fc6ffc4ea', // 8 'ppi-lp btc-eth'
-  '0x659ab2320c95d89605079e991ef710963bfe8c85', // 9 'ppi-lp btc-usdt'
-  '0xfe95926b4dfca66724dfca7fac90d27039ab92ec', // 10 'ppi-lp eth-usdt'
-  '0x49916ba65d0048c4bbb0a786a527d98d10a1cd2d', // 11 ppi
+  '0x49916ba65d0048c4bbb0a786a527d98d10a1cd2d', // 5 ppi
+//   '0xa86df320eff76f5204e922846f4be60ce3a3f184', // 6 'ppi-lp wcfx-btc'
+//   '0xbe2f8f60312b425ec0c29ce0945b5147defeb3df', // 7 'ppi-lp wcfx-eth'
+//   '0x7d883e774dfe8cea90f241e72368c1ad6892e1d8', // 8 'ppi-lp wcfx-usdt
+//   '0x51d5bbfba37b289869e3c99c7eab044fc6ffc4ea', // 9 'ppi-lp btc-eth'
+//   '0x659ab2320c95d89605079e991ef710963bfe8c85', // 10 'ppi-lp btc-usdt'
+//   '0xfe95926b4dfca66724dfca7fac90d27039ab92ec', // 11 'ppi-lp eth-usdt'
 ]
 
 const mainnetAddress: string[] = [

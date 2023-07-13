@@ -57,7 +57,7 @@ export class TokenDefinition {
     staticDefinitions.push(tokenUSDT)
 
     let tokenPPI = new TokenDefinition(
-      Address.fromString(networkAddress[11]),
+      Address.fromString(networkAddress[5]),
       'PPI',
       'PPI',
       BigInt.fromI32(18)
