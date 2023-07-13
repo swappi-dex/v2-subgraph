@@ -8,7 +8,7 @@ import { Factory as FactoryContract } from '../types/templates/Pair/Factory'
 import { TokenDefinition } from './tokenDefinition'
 
 const testnetAddress: string[] = [
-  '0x2d57bec97c35e3e6d70cfb02f8a00b4d38bda766', // 0 swappifactory
+  '0x36b83e0d41d1dd9c73a006f0c1cbc1f096e69e34', // 0 swappifactory
   '0x2ed3dddae5b2f321af0806181fbfa6d049be47d8', // 1 wcfx
   '0x54593e02c39aeff52b166bd036797d2b1478de8d', // 2 faucetbtc
   '0xcd71270f82f319e0498ff98af8269c3f0d547c65', // 3 fauceteth
@@ -19,7 +19,7 @@ const testnetAddress: string[] = [
   '0x51d5bbfba37b289869e3c99c7eab044fc6ffc4ea', // 8 'ppi-lp btc-eth'
   '0x659ab2320c95d89605079e991ef710963bfe8c85', // 9 'ppi-lp btc-usdt'
   '0xfe95926b4dfca66724dfca7fac90d27039ab92ec', // 10 'ppi-lp eth-usdt'
-  '0x7caa2fec42ab92eaa2b1b8e264f3246509c5eda6', // 11 ppi
+  '0x49916ba65d0048c4bbb0a786a527d98d10a1cd2d', // 11 ppi
 ]
 
 const mainnetAddress: string[] = [
@@ -56,7 +56,7 @@ const mainnetAddress: string[] = [
   "0xba70fc92e65d7be07799c646c2ba4e9647bcba01", // 30 'faucet turbo' 
 ]
 
-export let networkAddress = mainnetAddress
+export let networkAddress = testnetAddress
 
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
 export let FACTORY_ADDRESS = networkAddress[0]

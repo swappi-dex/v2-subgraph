@@ -64,7 +64,7 @@ export class TokenDefinition {
     )
     staticDefinitions.push(tokenPPI)
 
-    let tokenUSDC = new TokenDefinition(
+    /* let tokenUSDC = new TokenDefinition(
       Address.fromString(networkAddress[16]),
       'USDC',
       'USDC',
@@ -118,7 +118,7 @@ export class TokenDefinition {
       'TURBO',
       BigInt.fromI32(18)
     )
-    staticDefinitions.push(tokenTURBO)
+    staticDefinitions.push(tokenTURBO) */
 
     return staticDefinitions
   }
